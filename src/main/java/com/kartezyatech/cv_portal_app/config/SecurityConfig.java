@@ -36,7 +36,7 @@ import java.security.interfaces.RSAPublicKey;
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfig {
 
     private final UserDetailsService userDetailsService;
 
@@ -46,24 +46,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Value("${jwt.private.key}")
     RSAPrivateKey privateKey;
 
-    @Bean(BeanIds.AUTHENTICATION_MANAGER)
-    @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
+
+
+    @Bean
+    public AuthenticationManager authenticationManagerBean(HttpSecurity httpSecurity)throws Exception{
+        AuthenticationManagerBuilder authenticationManagerBuilder = httpSecurity.getSharedObject(AuthenticationManagerBuilder.class);
+        authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+        return authenticationManagerBuilder.build();
     }
-    public void configure(HttpSecurity httpSecurity) throws Exception {
+
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity httpSecurity)throws Exception{
         httpSecurity.cors().and()
                 .csrf().disable()
-                .authorizeHttpRequests(authorize -> authorize
+                .authorizeHttpRequests(authorize->authorize
                         .antMatchers("/api/v1/auth/**")
                         .permitAll()
-                        .antMatchers("/api/v1/movie/movie-list")
+                        .antMatchers("/api/v1/basic/**")
                         .permitAll()
-                        .antMatchers("/api/v1/home/**")
+                        .antMatchers("/api/v1/user-image/**")
                         .permitAll()
-                        .antMatchers("/api/v1/movie-category/**")
-                        .permitAll()
-                        .antMatchers("/api/v1/storage/**")
+                        .antMatchers("/api/v1/job-advert/**")
                         .permitAll()
                         .anyRequest()
                         .authenticated())
@@ -71,15 +74,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .exceptionHandling(exceptions -> exceptions
                         .authenticationEntryPoint(new BearerTokenAuthenticationEntryPoint())
-                        .accessDeniedHandler(new BearerTokenAccessDeniedHandler())
-                );
+                        .accessDeniedHandler(new BearerTokenAccessDeniedHandler()));
+
+        return httpSecurity.build();
     }
 
-    @Override
-    public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception{
-        authenticationManagerBuilder.userDetailsService(userDetailsService)
-                .passwordEncoder(passwordEncoder());
-    }
+
 
 
 
@@ -99,6 +99,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         JWKSource<SecurityContext> jwks = new ImmutableJWKSet<>(new JWKSet(jwk));
         return new NimbusJwtEncoder(jwks);
     }
-
 
 }
