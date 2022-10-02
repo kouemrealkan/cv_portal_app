@@ -12,6 +12,6 @@ public interface UserMapper {
     @Mapping(target = "role",source = "role")
     @Mapping(target = "email",source = "email")
     @Mapping(target = "phoneNumber",source = "phoneNumber")
-    @Mapping(target = "createdDate",expression = "java(java.time.Instant.now())")
+    @Mapping(target = "createdDate",source = "createdDate")
     public UserResponse mapToDto(User user);
 }
