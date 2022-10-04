@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -21,15 +23,21 @@ public class User {
 
 
     @NotBlank(message = "username is required")
+    @Column(unique = true)
     private String userName;
 
 
+    @Column(unique = true)
+    @NotBlank(message = "email is required")
     private String email;
 
 
+    @Column(unique = true)
+    @NotBlank(message = "phone number is required")
     private String phoneNumber;
 
 
+    @NotBlank(message = "password is required")
     private String password;
 
     @NotBlank(message = "role is required")
@@ -39,6 +47,12 @@ public class User {
 
     @OneToOne(mappedBy = "user")
     private UserImage userImage;
+
+
+    @OneToMany(mappedBy = "user",orphanRemoval = true)
+    private List<UserCv> userCvList = new ArrayList<>();
+
+
 
 
 

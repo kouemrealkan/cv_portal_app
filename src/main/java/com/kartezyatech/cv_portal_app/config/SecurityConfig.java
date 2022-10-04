@@ -68,6 +68,8 @@ public class SecurityConfig {
                         .permitAll()
                         .antMatchers("/api/v1/job-advert/**")
                         .permitAll()
+                        .antMatchers("/api/v1/user-cv/**")
+                        .permitAll()
                         .anyRequest()
                         .authenticated())
                 .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
