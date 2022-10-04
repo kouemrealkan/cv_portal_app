@@ -53,6 +53,11 @@ public class User {
     private List<UserCv> userCvList = new ArrayList<>();
 
 
+    @OneToMany(mappedBy = "user",orphanRemoval = true)
+    private List<JobApply> jobApplies = new ArrayList<>();
+
+
+
 
 
 

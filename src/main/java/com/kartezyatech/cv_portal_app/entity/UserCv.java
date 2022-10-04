@@ -7,7 +7,9 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
@@ -40,6 +42,9 @@ public class UserCv {
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
+
+    @OneToMany(mappedBy = "userCv",orphanRemoval = true)
+    private List<JobApply> jobApplies = new ArrayList<>();
 
 
 

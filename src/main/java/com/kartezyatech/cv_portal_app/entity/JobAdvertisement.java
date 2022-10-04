@@ -4,13 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -34,6 +33,9 @@ public class JobAdvertisement {
 
     private boolean isEnabled;
 
+
+    @OneToMany(mappedBy = "jobAdvertisement")
+    private List<JobApply> jobApplyList = new ArrayList<>();
 
 
 
