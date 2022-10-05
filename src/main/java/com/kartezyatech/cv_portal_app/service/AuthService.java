@@ -77,6 +77,13 @@ public class AuthService {
     }
 
 
+    @Transactional(readOnly = true)
+    public Long getCurrentUserId(){
+        Jwt principal = (Jwt) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User getUser  = userRepository.findByUserName(principal.getSubject())
+                .orElseThrow(()->new CvPortalAppException("user not found"));
+        return getUser.getId();
+    }
 
 
 

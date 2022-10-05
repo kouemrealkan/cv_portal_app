@@ -36,6 +36,11 @@ public class AuthController {
         return ResponseEntity.status(HttpStatus.OK).body(authService.userLogout());
     }
 
+    @GetMapping("/get-user-id")
+    public ResponseEntity<Long> getUserId(){
+        return ResponseEntity.ok(authService.getCurrentUserId());
+    }
+
 
 
 }
