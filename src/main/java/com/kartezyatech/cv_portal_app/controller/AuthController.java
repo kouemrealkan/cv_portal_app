@@ -37,7 +37,7 @@ public class AuthController {
     }
 
     @GetMapping("/get-user-id")
-    public ResponseEntity<Long> getUserId(){
+    public ResponseEntity<UserIdResponse> getUserId(){
         return ResponseEntity.ok(authService.getCurrentUserId());
     }
 

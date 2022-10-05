@@ -3,6 +3,7 @@ package com.kartezyatech.cv_portal_app.service;
 import com.kartezyatech.cv_portal_app.dto.*;
 import com.kartezyatech.cv_portal_app.entity.User;
 import com.kartezyatech.cv_portal_app.exception.CvPortalAppException;
+import com.kartezyatech.cv_portal_app.mapper.UserIdMapper;
 import com.kartezyatech.cv_portal_app.mapper.UserMapper;
 import com.kartezyatech.cv_portal_app.repository.UserRepository;
 import com.kartezyatech.cv_portal_app.validator.JwtValidator;
@@ -29,6 +30,8 @@ public class AuthService {
     private final UserRepository userRepository;
     private final AuthenticationManager authenticationManager;
     private final JwtValidator jwtValidator;
+    private final UserIdMapper userIdMapper;
+
 
     @Transactional
     public void registerUser(UserRegisterRequest userRegisterRequest) {
@@ -78,11 +81,11 @@ public class AuthService {
 
 
     @Transactional(readOnly = true)
-    public Long getCurrentUserId(){
+    public UserIdResponse getCurrentUserId(){
         Jwt principal = (Jwt) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User getUser  = userRepository.findByUserName(principal.getSubject())
                 .orElseThrow(()->new CvPortalAppException("user not found"));
-        return getUser.getId();
+        return userIdMapper.mapToDto(getUser);
     }
 
 
