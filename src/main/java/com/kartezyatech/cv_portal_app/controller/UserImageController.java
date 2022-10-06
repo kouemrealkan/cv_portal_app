@@ -33,4 +33,11 @@ public class UserImageController {
 
     }
 
+    @PutMapping(value = "/update-img/{userId}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
+    public ResponseEntity<?> updateUserImage(@RequestParam("file")MultipartFile file, @PathVariable Long userId)throws Exception{
+        String updatedImage = userImageService.updateUserImage(file,userId);
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(updatedImage);
+    }
+
 }

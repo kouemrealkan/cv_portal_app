@@ -15,7 +15,7 @@ public class JobApplyResponse {
     private Long jobAdvertisementId;
     private String jobName;
     private Long userCvId;
-    private Instant applyDate;
+    private String applyDate;
     private String userName;
     private String status;
 }

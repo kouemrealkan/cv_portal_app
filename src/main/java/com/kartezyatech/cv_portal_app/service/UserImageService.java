@@ -43,4 +43,14 @@ public class UserImageService {
         byte[] images=ImageUploadHelper.decompressImage(dbImageData.get().getImageData());
         return images;
     }
+
+    public String updateUserImage(MultipartFile file,Long userId)throws Exception{
+        UserImage userImage = userImageRepository.findByUserId(userId).orElseThrow(()->new CvPortalAppException("Image Not Found"));
+        userImage.setImageData(ImageUploadHelper.compressImage(file.getBytes()));
+        userImageRepository.save(userImage);
+        if(userImage !=null){
+            return "file uploaded successfully : " + file.getOriginalFilename();
+        }
+        return null;
+    }
 }

@@ -11,7 +11,7 @@ public interface JobAdvertisementMapper {
     @Mapping(target = "jobName",source = "jobName")
     @Mapping(target = "jobDetail",source = "jobDetail")
     @Mapping(target = "advertDeadLine",source = "advertDeadLine")
-    @Mapping(target = "advertDate",expression = "java(java.time.Instant.now())")
+    @Mapping(target = "advertDate",source = "advertDate")
     @Mapping(target = "enabled",source = "enabled")
 
     public JobAdvertResponse mapToDto(JobAdvertisement jobAdvertisement);

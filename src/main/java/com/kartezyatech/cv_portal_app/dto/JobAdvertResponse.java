@@ -19,7 +19,7 @@ public class JobAdvertResponse {
 
     private String advertDeadLine;
 
-    private Instant advertDate;
+    private String advertDate;
 
     private boolean enabled;
 }
