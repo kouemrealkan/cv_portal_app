@@ -13,5 +13,7 @@ public interface UserMapper {
     @Mapping(target = "email",source = "email")
     @Mapping(target = "phoneNumber",source = "phoneNumber")
     @Mapping(target = "createdDate",source = "createdDate")
+    @Mapping(target = "name",source = "name")
+    @Mapping(target = "lastName",source = "lastName")
     public UserResponse mapToDto(User user);
 }

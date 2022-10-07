@@ -49,5 +49,12 @@ public class AuthController {
         return ResponseEntity.status(HttpStatus.OK).body("User Updated Success");
     }
 
+    @GetMapping("/get-user/{id}")
+    public ResponseEntity<UserResponse> getUserById(@PathVariable Long id){
+        return ResponseEntity.status(HttpStatus.OK).body(authService.getUserById(id));
+    }
+
+
+
 
 }

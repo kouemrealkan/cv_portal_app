@@ -104,5 +104,12 @@ public class AuthService {
     }
 
 
+    @Transactional(readOnly = true)
+    public UserResponse getUserById(Long id){
+        User user = userRepository.findById(id).orElseThrow(()->new CvPortalAppException("User Not Found"));
+        return userMapper.mapToDto(user);
+    }
+
+
 
 }
