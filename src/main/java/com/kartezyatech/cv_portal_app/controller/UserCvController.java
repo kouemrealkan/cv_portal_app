@@ -34,6 +34,12 @@ public class UserCvController {
         return ResponseEntity.ok().body(userCvService.getUserCvListByUserId(userId));
     }
 
+    @GetMapping("/get-user-cv/{id}")
+    public ResponseEntity<UserCvResponse> getUserCv(@PathVariable Long id){
+        return ResponseEntity.ok().body(userCvService.getUserCv(id));
+    }
+
+
 
     @PutMapping("/update-cv/{id}")
     public ResponseEntity<String> updateUserCv(@RequestBody UserCvRequest userCvRequest, @PathVariable Long id){

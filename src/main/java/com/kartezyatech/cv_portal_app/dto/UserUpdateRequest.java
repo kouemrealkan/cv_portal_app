@@ -4,17 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserResponse {
-    private Long id;
+public class UserUpdateRequest {
+
     private String userName;
-    private String role;
     private String email;
     private String phoneNumber;
-    private String createdDate;
     private String name;
     private String lastName;
 }

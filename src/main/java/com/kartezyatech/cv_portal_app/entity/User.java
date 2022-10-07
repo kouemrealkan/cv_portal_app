@@ -43,6 +43,10 @@ public class User {
     @NotBlank(message = "role is required")
     private String role;
 
+    private String name;
+
+    private String lastName;
+
     private Instant createdDate;
 
     @OneToOne(mappedBy = "user")

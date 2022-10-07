@@ -16,4 +16,5 @@ public interface UserCvRepository extends JpaRepository<UserCv,Long> {
     List<UserCv> findByUserId(Long userId);
 
 
+
 }

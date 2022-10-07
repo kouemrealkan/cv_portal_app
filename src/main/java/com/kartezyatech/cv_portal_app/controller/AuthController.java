@@ -5,6 +5,7 @@ import com.kartezyatech.cv_portal_app.service.AuthService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 import static org.springframework.http.ResponseEntity.status;
 @RestController
@@ -41,6 +42,12 @@ public class AuthController {
         return ResponseEntity.ok(authService.getCurrentUserId());
     }
 
+
+    @PutMapping("/update-user/{id}")
+    public ResponseEntity<String> updateUserInfo(@RequestBody UserUpdateRequest userUpdateRequest, @PathVariable Long id){
+        authService.updateUserInfo(userUpdateRequest,id);
+        return ResponseEntity.status(HttpStatus.OK).body("User Updated Success");
+    }
 
 
 }

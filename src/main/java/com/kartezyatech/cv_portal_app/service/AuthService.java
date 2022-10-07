@@ -89,5 +89,20 @@ public class AuthService {
     }
 
 
+    @Transactional
+    public void updateUserInfo(UserUpdateRequest userUpdateRequest,Long id){
+        User user = userRepository.findById(id).orElseThrow(()->new CvPortalAppException("User Not Found"));
+
+        user.setUserName(userUpdateRequest.getUserName());
+        user.setEmail(userUpdateRequest.getEmail());
+        user.setName(userUpdateRequest.getName());
+        user.setLastName(userUpdateRequest.getLastName());
+        user.setPhoneNumber(userUpdateRequest.getPhoneNumber());
+
+        userRepository.save(user);
+
+    }
+
+
 
 }

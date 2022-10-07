@@ -60,6 +60,12 @@ public class UserCvService {
                 .collect(Collectors.toList());
     }
 
+    @Transactional(readOnly = true)
+    public UserCvResponse getUserCv(Long id){
+        UserCv usercv =userCvRepository.findById(id).orElseThrow(()->new CvPortalAppException("Cv Not Found"));
+        return userCvMapper.mapToDto(usercv);
+    }
+
     public void updateUserCv(UserCvRequest userCvRequest,Long id){
         UserCv userCv = userCvRepository.findById(id).orElseThrow(()->new CvPortalAppException("Not Found"));
         userCv.setUserAddress(userCvRequest.getUserAddress());
