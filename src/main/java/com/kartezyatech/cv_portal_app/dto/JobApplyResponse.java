@@ -17,5 +17,8 @@ public class JobApplyResponse {
     private Long userCvId;
     private String applyDate;
     private String userName;
+    private String name;
+    private String lastName;
+    private String phoneNumber;
     private String status;
 }

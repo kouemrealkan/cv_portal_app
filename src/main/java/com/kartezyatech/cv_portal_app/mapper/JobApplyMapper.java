@@ -14,6 +14,9 @@ public interface JobApplyMapper {
     @Mapping(target = "userCvId",source = "userCv.id")
     @Mapping(target = "applyDate",source = "applyDate")
     @Mapping(target = "userName",source = "user.userName")
+    @Mapping(target = "name",source = "user.name")
+    @Mapping(target = "lastName",source = "user.lastName")
+    @Mapping(target = "phoneNumber",source = "user.phoneNumber")
     @Mapping(target = "status",source = "status")
     public JobApplyResponse mapToDto(JobApply jobApply);
 

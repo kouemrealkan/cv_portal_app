@@ -18,6 +18,9 @@ public interface UserCvMapper {
     @Mapping(target = "userWorkExperience",source = "userWorkExperience")
     @Mapping(target = "userDetailInfo",source = "userDetailInfo")
     @Mapping(target = "userName",source = "user.userName")
+    @Mapping(target = "name",source = "user.name")
+    @Mapping(target = "lastName",source = "user.lastName")
+    @Mapping(target = "phoneNumber",source = "user.phoneNumber")
 
 
     public UserCvResponse mapToDto(UserCv userCv);

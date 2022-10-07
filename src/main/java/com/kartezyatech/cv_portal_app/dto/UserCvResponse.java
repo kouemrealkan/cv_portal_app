@@ -26,4 +26,8 @@ public class UserCvResponse {
     private String userDetailInfo;
 
     private String userName;
+
+    private String name;
+    private String lastName;
+    private String phoneNumber;
 }
