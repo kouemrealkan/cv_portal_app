@@ -11,6 +11,7 @@ public interface JobApplyMapper {
     @Mapping(target = "id",source = "id")
     @Mapping(target = "jobAdvertisementId",source = "jobAdvertisement.id")
     @Mapping(target = "jobName",source = "jobAdvertisement.jobName")
+    @Mapping(target = "jobDetail",source = "jobAdvertisement.jobDetail")
     @Mapping(target = "userCvId",source = "userCv.id")
     @Mapping(target = "applyDate",source = "applyDate")
     @Mapping(target = "userName",source = "user.userName")

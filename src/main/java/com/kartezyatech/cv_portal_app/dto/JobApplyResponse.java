@@ -14,6 +14,7 @@ public class JobApplyResponse {
     private Long id;
     private Long jobAdvertisementId;
     private String jobName;
+    private String jobDetail;
     private Long userCvId;
     private String applyDate;
     private String userName;
